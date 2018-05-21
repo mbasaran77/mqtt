@@ -2,6 +2,7 @@
 import paho.mqtt.client as mqtt
 import os
 from urllib.parse import urlparse
+import time
 # Define event callbacks
 
 
@@ -32,7 +33,7 @@ mqttc.on_publish = on_publish
 mqttc.on_subscribe = on_subscribe
 
 # Uncomment to enable debug messages
-#mqttc.on_log = on_log
+mqttc.on_log = on_log
 
 # Parse CLOUDMQTT_URL (or fallback to localhost)
 url_str = os.environ.get('CLOUDMQTT_URL', 'mqtt://localhost:1883')
@@ -44,13 +45,25 @@ mqttc.username_pw_set("vkrvmcxx", "FwXk5dCG2gX2")
 mqttc.connect('m21.cloudmqtt.com', 15253)
 
 # Start subscribe, with QoS level 0
-mqttc.subscribe(topic, 0)
-
-# Publish a message
-mqttc.publish(topic, "my message")
-
+mqttc.loop()
+i = 0
+temp_0 = 15
+while i<5:
+    if temp_0 >= 45:
+        temp_0 = 15
+    mqttc.subscribe("house/temp_0", 0)
+    # Publish a message
+    mqttc.publish("house/temp_0", temp_0)
+    time.sleep(4)
+    i += 1
+    temp_0 = temp_0 + 5
 # Continue the network loop, exit when an error occurs
-rc = 0
-while rc == 0:
-    rc = mqttc.loop()
-print("rc: " + str(rc))
+# rc = 0
+# while rc == 0:
+#     rc = mqttc.loop()
+#     time.sleep(5)
+#     if temp_0 >= 40:
+#         temp_0 = 15
+#     temp_0 = temp_0 + 5
+#
+# print("rc: " + str(rc))

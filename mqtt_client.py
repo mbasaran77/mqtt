@@ -39,9 +39,16 @@ print("connectting to broker ", broker)
 client.connect("test.mosquitto.org", 1883, 60)  # connect to broker
 
 client.loop_start()
-client.subscribe("house/temp_0")
-client.publish("house/temp_0", 12.0)
-time.sleep(4)
+i = 0
+temp_0 = 15
+while i<10:
+    client.subscribe("house/temp_0")
+    client.publish("house/temp_0", temp_0)
+    time.sleep(4)
+    i += 1
+    if temp_0 >= 40:
+        temp_0 = 15
+    temp_0 = temp_0 + 5
 
 client.disconnect()     # disconnect
 client.loop_stop()
