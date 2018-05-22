@@ -1,0 +1,55 @@
+
+import paho.mqtt.client as mqtt
+import time
+
+
+def on_log(client, userdata, level, buf):
+    print("log ", buf)
+
+
+def on_connect(client, userdata,flags, rc):
+    if rc == 0:
+        print("connected ok")
+    else:
+        print("bad connection returned code = ", rc)
+
+
+def on_disconnect(client, userdata,flags, rc = 0):
+    print("disconnected result code = ", rc)
+
+
+def on_message(client, userdata, msg):
+    topic = msg.topic
+    m_decode = str(msg.payload.decode("utf-8"))
+    print("mesage received", m_decode)
+
+
+broker = "192.168.1.206"
+client = mqtt.Client()     # create new instance
+
+client.on_connect = on_connect  # bind call back function call
+client.on_disconnect = on_disconnect
+client.on_log = on_log
+client.on_message = on_message
+
+print("connectting to broker ", broker)
+
+# client.connect("iot.eclipse.org", 1883, 60)  # connect to broker
+client.username_pw_set("U000306", "zjBBnJdP")
+client.connect("m.thingscale.io", 1883)  # connect to broker
+
+
+client.loop_start()
+i = 0
+temp_0 = 15
+while i<3:
+    client.subscribe("plc_1/temp_0")
+    client.publish("plc_1/temp_0", temp_0)
+    time.sleep(4)
+    i += 1
+    if temp_0 >= 40:
+        temp_0 = 15
+    temp_0 = temp_0 + 5
+
+client.disconnect()     # disconnect
+client.loop_stop()
