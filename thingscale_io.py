@@ -25,7 +25,7 @@ def on_message(client, userdata, msg):
 
 
 broker = "192.168.1.206"
-client = mqtt.Client("python1")     # create new instance
+client = mqtt.Client()     # create new instance
 
 client.on_connect = on_connect  # bind call back function call
 client.on_disconnect = on_disconnect
@@ -35,13 +35,21 @@ client.on_message = on_message
 print("connectting to broker ", broker)
 
 # client.connect("iot.eclipse.org", 1883, 60)  # connect to broker
+client.username_pw_set("U000306", "zjBBnJdP")
+client.connect("m.thingscale.io", 1883)  # connect to broker
 
-client.connect("m21.cloudmqtt.com", 15253, 25253)  # connect to broker
 
 client.loop_start()
-client.subscribe("house/temp_0")
-client.publish("house/temp_0", 12.0)
-time.sleep(4)
+i = 0
+temp_0 = 15
+while i<3:
+    client.subscribe("plc_1/temp_0")
+    client.publish("plc_1/temp_0", temp_0)
+    time.sleep(4)
+    i += 1
+    if temp_0 >= 40:
+        temp_0 = 15
+    temp_0 = temp_0 + 5
 
 client.disconnect()     # disconnect
 client.loop_stop()
