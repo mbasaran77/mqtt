@@ -8,7 +8,7 @@ options = {
     "id": "app1",
     "auth-method": "apikey",
     "auth-key": "a-oqpqg5-ffv6z5cmkm",
-    "auth-token": "zs&HM&a&ZZwJ4c4v?",
+    "auth-token": "(zs&HM&a&ZZwJ4c4v?",
     "clean-session": True
 }
 
@@ -32,3 +32,5 @@ client.connect()
 client.deviceEventCallback = ButtonCallback
 client.subscribeToDeviceEvents(deviceType=sourceDeviceType, deviceId=sourceDeviceId, event=sourceEvent)
 
+while True:
+    time.sleep(1)

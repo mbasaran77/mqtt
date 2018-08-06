@@ -21,7 +21,7 @@ def on_message(client, obj, msg):
     else:
         print("btn off")
 
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    # print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
     print(button)
 
 

@@ -1,5 +1,0 @@
-2018-08-06 07:22:28,910   ibmiotf.application.Client  CRITICAL Not authorized: (a:oqpqg5:app1, a-oqpqg5-ffv6z5cmkm, zs&HM&a&ZZwJ4c4v?)
-2018-08-06 07:22:58,771   ibmiotf.application.Client  CRITICAL Operation timed out connecting to IBM Watson IoT Platform: oqpqg5.messaging.internetofthings.ibmcloud.com
-2018-08-06 07:25:32,857   ibmiotf.application.Client  CRITICAL Not authorized: (a:oqpqg5:app1, a-oqpqg5-ffv6z5cmkm, zs&HM&a&ZZwJ4c4v?)
-2018-08-06 07:27:05,809   ibmiotf.application.Client  CRITICAL Not authorized: (a:oqpqg5:app1, a-oqpqg5-ffv6z5cmkm, zs&HM&a&ZZwJ4c4v?)
-2018-08-06 07:27:35,720   ibmiotf.application.Client  CRITICAL Operation timed out connecting to IBM Watson IoT Platform: oqpqg5.messaging.internetofthings.ibmcloud.com
