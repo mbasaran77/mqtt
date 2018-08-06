@@ -3,8 +3,6 @@ import time
 import json
 import paho.mqtt.client as mqtt
 
-# import ibmiotf.device
-
 host = 'oqpqg5.messaging.internetofthings.ibmcloud.com'
 client_id = 'd:oqpqg5:Bulbs:Bulb'
 username = 'use-token-auth'

@@ -17,7 +17,20 @@ client.connect(host, 1883, 60)
 i = 0
 
 
-while i < 5:
+while i < 25:
+    if i == 0:
+        btnState = "on"
+    elif i == 5:
+        btnState = "off"
+    elif i == 10:
+        btnState = "on"
+    elif i == 15:
+        btnState = "off"
+    elif i == 20:
+        btnState = "on"
+    elif i == 25:
+        btnState = "off"
+
     payload = {"Button": "on"}
     client.publish(topic, json.dumps(payload))
     print('message published')
