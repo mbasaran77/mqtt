@@ -15,7 +15,10 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, obj, msg):
-    button = json.load(msg.payload)["state"]
+    print(msg.payload)
+    button = json.loads(msg.payload)["state"]
+    # button = msg.payload[1]
+    print(button)
     if button == "on":
         print("btn on")
     else:

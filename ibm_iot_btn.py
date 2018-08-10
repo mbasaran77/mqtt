@@ -31,9 +31,9 @@ while i < 25:
     elif i == 25:
         btnState = "off"
 
-    payload = {"Button": "on"}
+    payload = {"Button": btnState}
     client.publish(topic, json.dumps(payload))
-    print('message published')
+    print('message published', payload)
     time.sleep(5)
     i += 1
 client.loop()
